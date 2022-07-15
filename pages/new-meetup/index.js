@@ -11,8 +11,9 @@ const NewMeetupPage = () => {
       },
       body: JSON.stringify(meetupData),
     });
-    const meetup = await response.json();
-    router.push(`/meetups/${meetup.id}`);
+    const meetup = await response.json().then((res) => {
+      router.push(`/${res.id}`);
+    });
   };
 
   return (

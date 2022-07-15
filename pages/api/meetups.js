@@ -1,6 +1,5 @@
 // /api/meetups
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { db as prisma } from "../../utils/db.server";
 
 const handler = async (req, res) => {
   const allMeetups = await prisma.meetup.findMany();

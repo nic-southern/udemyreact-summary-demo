@@ -1,8 +1,22 @@
-import MeetupList from "../components/meetups/MeetupList";
-import { server } from "../config";
+import MeetupList from "@/components/meetups/MeetupList";
+import { server } from "@/config";
+import { GetServerSidePropsContext } from "next";
 import Head from "next/head";
 
-const HomePage = (props) => {
+interface Meetup {
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  location: string;
+  image: string;
+}
+
+interface PageProps {
+  meetups: Meetup;
+}
+
+const HomePage = (props: PageProps) => {
   return (
     <>
       <Head>
@@ -17,7 +31,7 @@ const HomePage = (props) => {
   );
 };
 
-async function getServerSideProps(context) {
+async function getServerSideProps(context: GetServerSidePropsContext) {
   const req = context.req;
   const res = context.res;
 
